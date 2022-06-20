@@ -17,7 +17,7 @@
 
 Student @ University of Science and Technology of China
 
-- :pencil2: Python / JavaScript / CSS / Ruby
+- :pencil2: C++ / Python / JavaScript / CSS / Go
 - :hammer_and_pick: Windows 10 / Ubuntu / VS Code / Microsoft Edge
 
 ### More information
