@@ -1,0 +1,36 @@
+[user]
+    name = iBug
+    email = git@ibugone.com
+[core]
+    excludesFile = ~/.cvsignore
+    pager = less -F
+[init]
+    defaultBranch = master
+[color]
+    ui = true
+[advice]
+    detachedHead = false
+[push]
+    default = tracking
+[pull]
+    rebase = false
+[fetch]
+    prune = true
+[clean]
+    requireForce = false
+[gpg]
+    program = gpg2
+[alias]
+    a = add
+    A = add -A
+    c = commit
+    ch = checkout
+    d = diff
+    l = log --graph --oneline --decorate --all
+    p = push
+    pu = pull
+    s = status
+
+    root = rev-parse --show-toplevel
+#[url "git@github.com:"]
+#    insteadOf = https://github.com/

@@ -1,0 +1,9 @@
+---
+BasedOnStyle:  Google
+ColumnLimit:     0
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+IndentWidth:     4
+PointerAlignment: Right
+SpacesBeforeTrailingComments: 1
+...
