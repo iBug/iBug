@@ -1,4 +1,5 @@
 / https://ibug.io/ 302
+/c/* /conf/:splat 200
 /ssh /ssh.txt
 /ssh-all /ssh-all.txt
 /ssh-ca /ssh-ca.txt
