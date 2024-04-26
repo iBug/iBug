@@ -1,15 +1,19 @@
 " File: $HOME/.vimrc
 " Made by iBug
-" Jun 10, 2022
+" Apr 26, 2024
 " iBug's Vim RC file
 " Vim 8.2
 
 set nocompatible
+syntax on
+filetype plugin indent on
+
 set viminfo='100,<100,s32,h
 set timeoutlen=500 ttimeoutlen=50
 set showcmd number ruler showmatch
 set background=dark termguicolors
 set autoindent cindent smartindent
+set copyindent preserveindent
 set cinkeys-=0#
 set tabstop=4 shiftwidth=4 softtabstop=4 smarttab expandtab
 set wrapscan incsearch hlsearch
@@ -17,14 +21,12 @@ set ignorecase smartcase
 set whichwrap+=<,>,[,]
 set backspace=2 laststatus=2
 set foldenable foldmethod=manual
-set formatoptions-=cro
+set formatoptions-=cro formatoptions+=mBj
 set autoread nobackup noswapfile confirm
 set linebreak
 set magic iskeyword+=_
 set mouse=a ttymouse=sgr selection=exclusive selectmode=mouse,key
 set nocursorline nocursorcolumn
-syntax on
-filetype plugin indent on
 
 " if has("termguicolors")
 "   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
