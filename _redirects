@@ -1,7 +1,7 @@
 / https://ibug.io/ 302
 /c/* /conf/:splat 200
-/ssh /ssh.txt
-/ssh-all /ssh-all.txt
-/ssh-ca /ssh-ca.txt
-/gpg /gpg.txt
-/gpg.key /gpg.txt
+/ssh /ssh.txt 200
+/ssh-all /ssh-all.txt 200
+/ssh-ca /ssh-ca.txt 200
+/gpg /gpg.txt 200
+/gpg.key /gpg.txt 200
