@@ -1,15 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/sh
 
-umask 0022
-
-PROMPT_COMMAND() {
-	local e=$?
-  PROMPT_ECODE=""
-	(( e )) && PROMPT_ECODE="$e|"
-	return $e
-}
-PROMPT_COMMAND=PROMPT_COMMAND
-PS1='${PROMPT_ECODE}\w \$ '
+PS1='${BASH[((! $?))]:+$?|}\w \$ '
 shopt -s direxpand
 
 PROMPT_DIRTRIM=2
@@ -17,14 +8,22 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 CDPATH=":~"
 
-alias ls='ls --color=auto'
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -alF'
+if command -v eza &> /dev/null; then
+  alias ls='eza'
+  alias l='ls -GF'
+  alias la='ls -a'
+  alias ll='ls -aalF'
+else
+  alias ls='ls --color=auto'
+  alias l='ls -CF'
+  alias la='ls -A'
+  alias ll='ls -alF'
+fi
 alias ..='cd ..;'
 
 alias r='fc -e -'
 alias x='exit'
+alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 
 alias cc='cc -pie'
@@ -35,16 +34,11 @@ alias g++='g++ -pie'
 alias tb='/system/bin/toolbox '
 alias ty='/system/bin/toybox '
 alias sudo='sudo '
-alias su='tsu'
+alias su='tsu '
 
 alias chcon='/system/bin/chcon'
 
-if command -v exa >/dev/null; then
-  alias ls=exa
-  alias la='ls -a'
-  alias ll='ls -aalF'
-  alias l='ls -GF'
-fi
+umask 0022
 
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR=vim
