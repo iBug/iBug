@@ -30,8 +30,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip -c=auto' # iproute2
 bind 'TAB: menu-complete'
@@ -70,12 +68,22 @@ tm() {
   tmux new-session -A -s "${1:-$TMUX_SESSION}"
 }
 
+su() {
+  if test "$#" -eq 0; then
+    sudo -i
+  else
+    command su "$@"
+  fi
+}
+
 if [ -n "$SSH_CONNECTION" -a -z "$TMUX" -a "$TERM_PROGRAM" != vscode ]; then
   export TMUX_SESSION=ssh
   export -n SSH_CLIENT SSH_CONNECTION SSH_TTY
-  if ! tmux has-session -t "$TMUX_SESSION" 2>/dev/null; then
+  if [ -x ~/run/tmux-new.sh ]; then
+    ~/run/tmux-new.sh
+  elif ! tmux has-session -t "$TMUX_SESSION" 2>/dev/null; then
     # No existing session, create new
-    tmux new-session -d -s "$TMUX_SESSION" -n htop sh -c 'while sudo htop; do :; done'
+    tmux new-session -d -s "$TMUX_SESSION" -n htop sh -c 'while sudo htop -d 10; do :; done'
     tmux new-window -t "$TMUX_SESSION"
   fi
   tmux attach-session -t "$TMUX_SESSION"
