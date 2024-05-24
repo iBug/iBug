@@ -3,17 +3,27 @@
     email = git@ibugone.com
 [core]
     excludesFile = ~/.cvsignore
-    pager = less -F
+    editor = vim
+    #pager = less -F
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
 [init]
     defaultBranch = master
 [color]
     ui = true
+[color "branch"]
+    upstream = green
+    remote = red
 [advice]
     detachedHead = false
 [push]
-    default = tracking
+    default = upstream
+    autoSetupRemote = true
+    followTags = true
 [pull]
-    rebase = false
+    ff = only
+    #rebase = false
 [fetch]
     prune = true
 [clean]
@@ -21,16 +31,19 @@
 [gpg]
     program = gpg2
 [alias]
-    a = add
-    A = add -A
-    c = commit
-    ch = checkout
-    d = diff
-    l = log --graph --oneline --decorate --all
     p = push
     pu = pull
     s = status
-
-    root = rev-parse --show-toplevel
+    a = add
+    A = add -A
+    c = commit
+    d = diff
+    l = log --graph --oneline --decorate --all
+    ch = checkout
+    adog = log --all --decorate --oneline --graph
+[delta]
+    features = decorations hyperlinks
 #[url "git@github.com:"]
 #    insteadOf = https://github.com/
+[rebase]
+    autostash = true
