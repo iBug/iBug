@@ -6,8 +6,8 @@
 umask 0022
 test -x /usr/bin/stty && stty -ixon  # disable Ctrl-S freezing
 
-HISTSIZE=20000
-HISTFILESIZE=100000
+HISTSIZE=50000
+HISTFILESIZE=1000000
 HISTTIMEFORMAT="%F %T "
 HISTCONTROL=ignoreboth
 shopt -s histappend
@@ -75,6 +75,17 @@ su() {
     command su "$@"
   fi
 }
+
+SSH_AUTH_SOCK="/run/user/$UID/ssh-agent.sock"
+if [ -S "$SSH_AUTH_SOCK" ]; then
+  export SSH_AUTH_SOCK
+else
+  unset SSH_AUTH_SOCK
+fi
+
+if [ -f "/usr/share/doc/fzf/examples/key-bindings.bash" ]; then
+  . /usr/share/doc/fzf/examples/key-bindings.bash
+fi
 
 if [ -n "$SSH_CONNECTION" -a -z "$TMUX" -a "$TERM_PROGRAM" != vscode ]; then
   export TMUX_SESSION=ssh
