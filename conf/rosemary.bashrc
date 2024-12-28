@@ -4,7 +4,7 @@
 [[ $- == *i* ]] || return
 
 umask 0022
-test -x /usr/bin/stty && stty -ixon  # disable Ctrl-S freezing
+command -v stty >/dev/null 2>&1 && stty -ixon  # disable Ctrl-S freezing
 
 HISTSIZE=50000
 HISTFILESIZE=1000000
@@ -49,11 +49,6 @@ if command -v eza >/dev/null; then
   alias la='ls -a'
   alias ll='ls -aalF'
   alias l='ls -GF'
-elif command -v exa >/dev/null; then
-  alias ls=exa
-  alias la='ls -a'
-  alias ll='ls -aalF'
-  alias l='ls -GF'
 fi
 
 export LESS="-iR --mouse --wheel-lines=3"
@@ -63,10 +58,6 @@ export GPG_TTY="$(tty)"
 
 test -f ~/.bash_aliases && . ~/.bash_aliases
 #test -f ~/.Xauthority && export XAUTHORITY=~/.Xauthority
-
-tm() {
-  tmux new-session -A -s "${1:-$TMUX_SESSION}"
-}
 
 su() {
   if test "$#" -eq 0; then
