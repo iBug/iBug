@@ -1,4 +1,4 @@
-# MSI GS73 laptop
+# Desktop PC
 ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABXtglRMhuHIwDqLssDd8aszot6T1kQ6BSRBUt205Uox8JhC7TnicxRaf564h1v9iPIREzRFs6XYgtH6XIRY6/lDwB6ZidADv5R6KdA7VpA++Yu/1YBPln/z8sI0sv1nLA99zUIG7ZFiGy3NxUpJB5/qXrToe1KUsFy0pwkcQltDVIx5A==
 
 # Lenovo laptop
