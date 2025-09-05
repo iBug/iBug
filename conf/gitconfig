@@ -1,6 +1,7 @@
 [user]
     name = iBug
     email = git@ibugone.com
+    signingKey = ~/.ssh/git_signing_key.pub
 [core]
     excludesFile = ~/.cvsignore
     editor = vim
@@ -30,6 +31,7 @@
     requireForce = false
 [gpg]
     program = gpg2
+    format = ssh
 [alias]
     p = push
     pu = pull
@@ -38,12 +40,18 @@
     A = add -A
     c = commit
     d = diff
+    dh = diff HEAD
     l = log --graph --oneline --decorate --all
     ch = checkout
     adog = log --all --decorate --oneline --graph
 [delta]
+    navigate = true
     features = decorations hyperlinks
-#[url "git@github.com:"]
-#    insteadOf = https://github.com/
+    line-numbers = true
+    true-color = auto
+[url "github:"]
+    insteadOf = https://github.com/
 [rebase]
     autostash = true
+[credential]
+	helper = store

@@ -2,7 +2,7 @@
 " Made by iBug
 " Apr 26, 2024
 " iBug's Vim RC file
-" Vim 8.2
+" Vim 9.1
 
 set nocompatible
 syntax on
@@ -25,6 +25,7 @@ set formatoptions-=cro formatoptions+=mBj
 set autoread nobackup noswapfile confirm
 set linebreak
 set magic iskeyword+=_
+set listchars=tab:>-,trail:.,extends:#,nbsp:.
 set mouse=a ttymouse=sgr selection=exclusive selectmode=mouse,key
 set nocursorline nocursorcolumn
 
@@ -52,7 +53,11 @@ map Q <NOP>
 map <M-v> <C-v>
 let mapleader="!"
 
-autocmd FileType sh,bash,zsh,javascript,json,toml,html,htmldjango,liquid,css,scss,yaml,ruby,vb,sql,sshconfig,pug,vue set tabstop=2 shiftwidth=2 softtabstop=2
+if filereadable(expand("~/.vim/local.vim"))
+  source ~/.vim/local.vim
+endif
+
+autocmd FileType sh,bash,zsh,javascript,json,jsonc,toml,html,htmldjango,liquid,css,scss,yaml,ruby,vb,sql,sshconfig,pug,vue set tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType html,htmldjango,go,make,text set noexpandtab
 autocmd FileType css,sass,scss,liquid set expandtab
 autocmd FileType c,cpp set cinkeys+=0#
@@ -60,6 +65,18 @@ autocmd FileType markdown,liquid syntax sync minlines=9999
 autocmd FileType asm set tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab
 autocmd FileType * set formatoptions-=cro formatoptions+=mBj
 autocmd BufWritePre * :%s/^\s\+$//e " Only trim empty lines
+
+" For Proxmox
+if isdirectory('/etc/pve')
+  autocmd FileType perl set tabstop=8 softtabstop=0 shiftwidth=4 noexpandtab
+endif
+
+autocmd BufNewFile,BufRead ~/proj/linux/* set tabstop=8 softtabstop=8 noexpandtab
+
+augroup logs
+  autocmd!
+  autocmd BufRead /var/log/* set autoread report=0 | autocmd FocusGained,BufEnter * checktime
+augroup END
 
 let g:pyindent_open_paren=shiftwidth()
 
