@@ -1,5 +1,11 @@
 # vim:filetype=bash:
 
+# Source .profile for "add_path"
+if [ "$(type -t add_path)" != "function" ]; then
+  source ~/.profile
+  return
+fi
+
 # If not running interactively, don't do anything
 [[ $- == *i* ]] || return
 
@@ -32,6 +38,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip -c=auto' # iproute2
+bind 'set show-all-if-ambiguous on'
 bind 'TAB: menu-complete'
 bind '"\e[Z": menu-complete-backward'
 
